@@ -1,12 +1,7 @@
-import { StyleSheet } from "react-native";
 import Text from "./Text";
 
-const styles = StyleSheet.create({
-    padding: 15,
-})
-
-const TextSubheading = ({ text }) => {
-    return <Text style={styles} color={'light'} fontWeight={'bold'} fontSize={'subheading'}> {text} </Text>;
+const TextSubheading = (props) => {
+    return <Text color={'light'} fontWeight={'bold'} fontSize={'subheading'} {...props}/>;
 };
 
 export default TextSubheading;

@@ -4,7 +4,8 @@ const theme = {
       textLight: '#fbf8f3',
       textSecondary: '#586069',
       primary: '#0366d6',
-      dark: '#24292e'
+      dark: '#24292e',
+      gray: '#4c4c4c'
     },
     fontSizes: {
       body: 14,
@@ -17,6 +18,15 @@ const theme = {
       normal: '400',
       bold: '700',
     },
+    logo: {
+      width: 50,
+      height: 50,
+      borderRadius: 5,
+    },
+    languageBadge: {
+      borderRadius: 5,
+      padding: 5
+    }
   };
   
   export default theme;
