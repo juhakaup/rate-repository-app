@@ -5,7 +5,8 @@ const theme = {
       textSecondary: '#586069',
       primary: '#0366d6',
       dark: '#24292e',
-      gray: '#8f8b99'
+      gray: '#8f8b99',
+      error: 'd73a4a'
     },
     fontSizes: {
       body: 14,
