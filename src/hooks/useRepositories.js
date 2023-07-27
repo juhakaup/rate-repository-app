@@ -8,9 +8,9 @@ const useRepositories = () => {
   });
 
   return { 
-    repositories: result.loading ? {} : result.data.repositories, 
+    repositories: result.data ? result.data.repositories : undefined,
     loading: result.loading, 
-    refetch: result.refetch 
+    refetch: result.refetch
   };
 };
 
