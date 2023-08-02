@@ -49,7 +49,7 @@ const readableNumber = (num) => {
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={{ flex: 1}}>
+    <View style={{ flex: 1}} testID="repositoryItem">
       <View style={ styles.info }>
         <Image style={styles.logo} source={{uri: item.ownerAvatarUrl }}/>
         <View style={{ flex: 1, paddingLeft:10, paddingTop:5}}>

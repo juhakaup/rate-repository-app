@@ -27,6 +27,7 @@ const AppBar = () => {
   const authStore = useAuthStorage();
   const apolloClient = useApolloClient();
   const me = useQuery(ME);
+  const currentUser = me.data?.me;
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -43,11 +44,11 @@ const AppBar = () => {
           <TextSubheading style={styles.tab}>Repositories</TextSubheading>
         </Link>
         
-        {me.data.me
-          ? <TouchableOpacity onPress={logout}>
-              <TextSubheading style={styles.tab}>Logout</TextSubheading>
-            </TouchableOpacity>
-          : <Link to="/signin"><TextSubheading style={styles.tab}>Sign In</TextSubheading></Link>}
+        {currentUser ? 
+          <TouchableOpacity onPress={logout}>
+            <TextSubheading style={styles.tab}>Logout</TextSubheading>
+          </TouchableOpacity>
+        : <Link to="/signin"><TextSubheading style={styles.tab}>Sign In</TextSubheading></Link>}
         
       </ScrollView>
     </View>
