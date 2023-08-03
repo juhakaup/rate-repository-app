@@ -1,6 +1,8 @@
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Image, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
 import theme from '../theme';
 import Text from './Text';
+import { useNavigate } from 'react-router-native';
+import * as Linking from 'expo-linking';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +31,15 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     marginTop:10,
   },
+  gitHubButton: {
+    padding: 15, 
+    borderRadius:5,  
+    backgroundColor: theme.colors.primary,
+    marginLeft:15,
+    marginRight:15,
+    marginBottom:15,
+    alignItems: 'center'
+  },
   stat: {
     flex: 1,
     alignItems: 'center',
@@ -47,45 +58,62 @@ const readableNumber = (num) => {
   return num;
 }
 
-const RepositoryItem = ({ item }) => {
+const onPress = (url) => {
+  Linking.openURL(url)
+}
+
+const RepositoryItem = ({ item, singleItem }) => {
+  const navigate = useNavigate();
+  
+
   return (
     <View style={{ flex: 1}} testID="repositoryItem">
-      <View style={ styles.info }>
-        <Image style={styles.logo} source={{uri: item.ownerAvatarUrl }}/>
-        <View style={{ flex: 1, paddingLeft:10, paddingTop:5}}>
-          <Text fontWeight={'bold'}>{item.fullName}</Text>
-          <Text style={styles.description}>{item.description}</Text>
-          <TouchableOpacity style={ styles.button }>
-            <Text fontWeight={'bold'} style={{ color: 'white' }} >{item.language}</Text>
-          </TouchableOpacity>
+      <Pressable disabled={singleItem} onPress={() => navigate(`${item.id}`)}>
+        <View style={ styles.info }>
+          <Image style={styles.logo} source={{uri: item.ownerAvatarUrl }}/>
+          <View style={{ flex: 1, paddingLeft:10, paddingTop:5}}>
+            <Text fontWeight={'bold'}>{item.fullName}</Text>
+            <Text style={styles.description}>{item.description}</Text>
+            <TouchableOpacity style={ styles.button }>
+              <Text fontWeight={'bold'} style={{ color: 'white' }} >{item.language}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={ styles.stat }>
-          <Text fontWeight={'bold'} style={{ marginBottom: 5}}>
-            {readableNumber(item.stargazersCount)}
-          </Text>
-          <Text style={ styles.statDesc }>Stars</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <View style={ styles.stat }>
+            <Text fontWeight={'bold'} style={{ marginBottom: 5}}>
+              {readableNumber(item.stargazersCount)}
+            </Text>
+            <Text style={ styles.statDesc }>Stars</Text>
+          </View>
+          <View style={ styles.stat }>
+            <Text fontWeight={'bold'} style={{ marginBottom: 5}}>
+              {readableNumber(item.forksCount)}
+            </Text>
+            <Text style={ styles.statDesc }>Forks</Text>
+          </View>
+          <View style={ styles.stat }>
+            <Text fontWeight={'bold'} style={{ marginBottom: 5}}>
+              {readableNumber(item.reviewCount)}
+            </Text>
+            <Text style={ styles.statDesc }>Reviews</Text>
+          </View>
+          <View style={ styles.stat }>
+            <Text fontWeight={'bold'} style={{ marginBottom: 5}}>
+              {readableNumber(item.ratingAverage)}
+            </Text>
+            <Text style={ styles.statDesc }>Rating</Text>
+          </View>
         </View>
-        <View style={ styles.stat }>
-          <Text fontWeight={'bold'} style={{ marginBottom: 5}}>
-            {readableNumber(item.forksCount)}
-          </Text>
-          <Text style={ styles.statDesc }>Forks</Text>
+        {singleItem ?
+        <View>
+        <TouchableOpacity style={ styles.gitHubButton } onPress={()=> onPress(item.url)}>
+          <Text fontWeight={'bold'} style={{ color: 'white' }} >Open in GitHub</Text>
+        </TouchableOpacity>
         </View>
-        <View style={ styles.stat }>
-          <Text fontWeight={'bold'} style={{ marginBottom: 5}}>
-            {readableNumber(item.reviewCount)}
-          </Text>
-          <Text style={ styles.statDesc }>Reviews</Text>
-        </View>
-        <View style={ styles.stat }>
-          <Text fontWeight={'bold'} style={{ marginBottom: 5}}>
-            {readableNumber(item.ratingAverage)}
-          </Text>
-          <Text style={ styles.statDesc }>Rating</Text>
-        </View>
-      </View>
+        : null
+        } 
+      </Pressable>
     </View>
   )
 }
