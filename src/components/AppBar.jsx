@@ -44,10 +44,15 @@ const AppBar = () => {
           <TextSubheading style={styles.tab}>Repositories</TextSubheading>
         </Link>
         
-        {currentUser ? 
-          <TouchableOpacity onPress={logout}>
-            <TextSubheading style={styles.tab}>Logout</TextSubheading>
-          </TouchableOpacity>
+        {currentUser ?
+          <View style={{flexDirection: 'row'}}>
+            <Link to="/review">
+              <TextSubheading style={styles.tab}>Create a review</TextSubheading>
+            </Link>
+            <TouchableOpacity onPress={logout}>
+              <TextSubheading style={styles.tab}>Logout</TextSubheading>
+            </TouchableOpacity>
+          </View>
         : <Link to="/signin"><TextSubheading style={styles.tab}>Sign In</TextSubheading></Link>}
         
       </ScrollView>
