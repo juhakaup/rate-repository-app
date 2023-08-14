@@ -45,16 +45,19 @@ const AppBar = () => {
         </Link>
         
         {currentUser ?
-          <View style={{flexDirection: 'row'}}>
+          <>
             <Link to="/review">
               <TextSubheading style={styles.tab}>Create a review</TextSubheading>
             </Link>
             <TouchableOpacity onPress={logout}>
               <TextSubheading style={styles.tab}>Logout</TextSubheading>
             </TouchableOpacity>
-          </View>
-        : <Link to="/signin"><TextSubheading style={styles.tab}>Sign In</TextSubheading></Link>}
-        
+          </>
+        : <>
+          <Link to="/signin"><TextSubheading style={styles.tab}>Sign in</TextSubheading></Link>
+          <Link to="/signup"><TextSubheading style={styles.tab}>Sign up</TextSubheading></Link>
+          </>
+        }
       </ScrollView>
     </View>
   )
