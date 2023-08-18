@@ -25,7 +25,6 @@ const SingleRepository = () => {
   }
   
   return (
-    //<RepositoryItem item={data.repository} singleItem={true} />
     <FlatList
     data={data.repository.reviews.edges}
     renderItem={({ item }) => <ReviewItem item={item} />}

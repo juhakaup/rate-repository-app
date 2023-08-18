@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { Link } from 'react-router-native';
 import Constants from 'expo-constants'
 import theme from '../theme';
@@ -49,9 +49,9 @@ const AppBar = () => {
             <Link to="/review">
               <TextSubheading style={styles.tab}>Create a review</TextSubheading>
             </Link>
-            <TouchableOpacity onPress={logout}>
+            <Pressable onPress={logout}>
               <TextSubheading style={styles.tab}>Logout</TextSubheading>
-            </TouchableOpacity>
+            </Pressable>
           </>
         : <>
           <Link to="/signin"><TextSubheading style={styles.tab}>Sign in</TextSubheading></Link>

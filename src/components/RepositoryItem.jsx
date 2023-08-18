@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
+import { View, Image, StyleSheet, Pressable } from 'react-native'
 import theme from '../theme';
 import Text from './Text';
 import { useNavigate } from 'react-router-native';
@@ -74,9 +74,9 @@ const RepositoryItem = ({ item, singleItem }) => {
           <View style={{ flex: 1, paddingLeft:10, paddingTop:5}}>
             <Text fontWeight={'bold'}>{item.fullName}</Text>
             <Text style={styles.description}>{item.description}</Text>
-            <TouchableOpacity style={ styles.button }>
+            <Pressable style={ styles.button }>
               <Text fontWeight={'bold'} style={{ color: 'white' }} >{item.language}</Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
         <View style={{ flexDirection: 'row' }}>
@@ -107,9 +107,9 @@ const RepositoryItem = ({ item, singleItem }) => {
         </View>
         {singleItem ?
         <View>
-        <TouchableOpacity style={ styles.gitHubButton } onPress={()=> onPress(item.url)}>
+        <Pressable style={ styles.gitHubButton } onPress={()=> onPress(item.url)}>
           <Text fontWeight={'bold'} style={{ color: 'white' }} >Open in GitHub</Text>
-        </TouchableOpacity>
+        </Pressable>
         </View>
         : null
         } 
