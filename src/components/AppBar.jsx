@@ -4,7 +4,7 @@ import Constants from 'expo-constants'
 import theme from '../theme';
 import TextSubheading from './TextSubheading';
 import { useQuery } from '@apollo/client';
-import { ME } from '../graphql/queries';
+import { GET_CURRENT_USER } from '../graphql/queries';
 import { useAuthStorage } from "../hooks/useAuthStorage";
 import { useApolloClient } from '@apollo/client';
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const authStore = useAuthStorage();
   const apolloClient = useApolloClient();
-  const me = useQuery(ME);
+  const me = useQuery(GET_CURRENT_USER);
   const currentUser = me.data?.me;
   const navigate = useNavigate();
 
@@ -46,9 +46,8 @@ const AppBar = () => {
         
         {currentUser ?
           <>
-            <Link to="/review">
-              <TextSubheading style={styles.tab}>Create a review</TextSubheading>
-            </Link>
+            <Link to="/review"><TextSubheading style={styles.tab}>Create a review</TextSubheading></Link>
+            <Link to="/reviews"><TextSubheading style={styles.tab}>My reviews</TextSubheading></Link>
             <Pressable onPress={logout}>
               <TextSubheading style={styles.tab}>Logout</TextSubheading>
             </Pressable>
