@@ -101,7 +101,7 @@ export class RepositoryListContainer extends React.Component {
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={ItemSeparator}
         data={repositoryNodes}
-        renderItem={({item}) => (<RepositoryItem item={item} singleItem={false}/>)}
+        renderItem={({item}) => (<RepositoryItem item={item} singleItem={false} userView={false}/>)}
         ListHeaderComponent={this.renderHeader}
       />
     </PaperProvider>

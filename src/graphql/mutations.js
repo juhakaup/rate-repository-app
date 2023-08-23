@@ -19,13 +19,19 @@ export const CREATE_REVIEW = gql`
       rating
     }
   }
-`
+`;
 
 export const CREATE_USER = gql`
-mutation CreateUser($user: CreateUserInput) {
-  createUser(user: $user) {
-    id
-    username
+  mutation CreateUser($user: CreateUserInput) {
+    createUser(user: $user) {
+      id
+      username
+    }
   }
-}
-`
+`;
+
+export const DELETE_REVIEW = gql`
+  mutation DeleteReview($deleteReviewId: ID!) {
+    deleteReview(id: $deleteReviewId)
+  }
+`;

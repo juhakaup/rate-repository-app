@@ -7,6 +7,7 @@ import Text from "./Text";
 
 const UserReviews = () => {
     const { data, error, loading } = useQuery(GET_CURRENT_USER, {
+        fetchPolicy: 'cache-and-network',
         variables: { "includeReviews": true }
     });
 
@@ -21,7 +22,7 @@ const UserReviews = () => {
     return(
         <FlatList
         data={data.me.reviews.edges}
-        renderItem={({ item }) => <ReviewItem item={item} />}
+        renderItem={({ item }) => <ReviewItem item={item} userView={true} />}
         keyExtractor={({ id }) => id}
         ItemSeparatorComponent={ItemSeparator}
         />
