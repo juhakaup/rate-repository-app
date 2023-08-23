@@ -73,7 +73,14 @@ const FilterSelector = ({ orderBy, setOrderBy, orderDirection, setOrderDirection
 export class RepositoryListContainer extends React.Component {
   renderHeader = () => {
     const props = this.props;
-    const { searchKeyword, setSearchKeyword, setOrderBy, orderBy, setOrderDirection, orderDirection } = props;
+    const { 
+      searchKeyword, 
+      setSearchKeyword, 
+      setOrderBy, 
+      orderBy, 
+      setOrderDirection, 
+      orderDirection
+    } = props;
     return (
       <>
         <SearchField searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword}/>

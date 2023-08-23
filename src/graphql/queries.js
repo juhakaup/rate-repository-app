@@ -32,15 +32,22 @@ export const GET_CURRENT_USER = gql`
   ${REVIEW_FIELDS}
 `
 export const GET_REPOSITORY = gql`
-  query ($repositoryId: ID!) {
+  query ($repositoryId: ID!, $first: Int $after: String) {
     repository(id: $repositoryId) {
       ...repositoryFields
-      reviews {
+      reviews(first: $first, after: $after) {
         edges {
           node {
             ...reviewFields
           }
+          cursor
         }
+        pageInfo {
+          hasNextPage
+          startCursor
+          endCursor
+        }
+        totalCount
       }
     }
   }
